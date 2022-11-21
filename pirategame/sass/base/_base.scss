@@ -1,0 +1,31 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  font-size: 62.5%;
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}
+
+html,
+body,
+#root,
+.section-sea,
+.app {
+  // @include fullScreen();
+  aspect-ratio: auto 16 / 9;
+}
+html{
+  // height: 200%;
+  // width: 200%;
+  height: 200vh;
+  width: 200vw;
+  aspect-ratio: auto 16 / 9;
+}
