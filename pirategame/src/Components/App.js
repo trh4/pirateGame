@@ -1,5 +1,5 @@
 // npm run watch:sass
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useMemo } from "react";
 import Sea from "./Sea";
 import Sidebar from "./Sidebar";
 
@@ -8,12 +8,9 @@ function App() {
   let [currentBox, setcurrentBox] = useState(0);
   useEffect(() => {
     // code to run after render goes here
-    centerMap();
-    
-  }, []);
-  useEffect(() => {
-    // code to run after render goes here
-  });
+    // centerMap();
+    console.log(dragToScroll)
+  },[dragToScroll] );
 
   let centerMap = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -29,10 +26,15 @@ function App() {
       setcurrentBox(6);
     }
     if (e.key === "q" || e.key === "Q") {
-      document.addEventListener('mousemove', logKey)
+      document.addEventListener("mousemove", logKey);
+    }
+    if (e.key === "s" || e.key === "S") {
+      setDragToScroll(true);
+    }
+    if (e.key === "X" || e.key === "x") {
+      setDragToScroll(false);
     }
   }
-
   function logKey(e) {
     console.log(`
       Screen X/Y: ${e.screenX}, ${e.screenY}
@@ -52,7 +54,6 @@ function App() {
   return (
     <div
       className="app"
-      // onClick={scrolll}
       tabIndex={-1}
       onKeyDown={handleKeyDown}
     >
@@ -60,7 +61,7 @@ function App() {
         SetcurrentBox={setcurrentBox}
         SetDragToScroll={setDragToScroll}
       />
-      <Sea CurrentBox={currentBox} DragToScroll={dragToScroll} />
+    <Sea CurrentBox={currentBox} DragToScroll={dragToScroll} />
     </div>
   );
 }

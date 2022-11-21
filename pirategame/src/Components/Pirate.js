@@ -1,12 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 function Pirate(props) {
   let pirate = useRef();
   useEffect(() => {
+    console.log("pirate render");
     pirate.current = document.querySelector(".pirate");
     // code to run after render goes here
     movePirate();
-  });
+  },[props.CurrentBox]);
   function followPirate(sec, blockVal, inlineVal) {
     let centerPirate = setInterval(() => {
       pirate.current.scrollIntoView({
@@ -17,16 +18,17 @@ function Pirate(props) {
     }, 0);
     setTimeout(() => {
       clearInterval(centerPirate);
+      console.log('cleard')
     }, sec * 1000);
   }
-  function movePirate() {
+  async function movePirate() {
     if (props.CurrentBox >= 2) {
       followPirate(1.5, "center", "start");
       pirate.current.classList.add("move-to-2");
     }
     setTimeout(() => {
       if (props.CurrentBox >= 3) {
-        moveTo3();
+        pirate.current.classList.add("move-to-3");
         if (props.CurrentBox >= 4) {
           setTimeout(() => {
             followPirate(1.5, "center", "end");
@@ -39,7 +41,6 @@ function Pirate(props) {
                   setTimeout(() => {
                     followPirate(1.5, "center", "center");
                     pirate.current.classList.add("move-to-6");
-                    
                   }, 1500);
                 }
               }, 1500);
@@ -49,20 +50,9 @@ function Pirate(props) {
       }
     }, 1500);
   }
-  // const wait = (delay, ...args) => new Promise(resolve => setTimeout(resolve, delay, ...args));
-  function moveTo2() {}
-  function moveTo3() {
-    // followPirate(3,'end','nearest');
-    pirate.current.classList.add("move-to-3");
-  }
 
   return (
-    <img
-      src={require("../img/Pirate.png")}
-      alt="pirate"
-      className="pirate"
-      onClick={moveTo2}
-    />
+    <img src={require("../img/Pirate.png")} alt="pirate" className="pirate" />
   );
 }
 

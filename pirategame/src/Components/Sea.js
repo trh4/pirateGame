@@ -5,7 +5,10 @@ import { useRef, useEffect } from "react";
 function Sea(props) {
   let pos = useRef({ top: 0, left: 0, x: 0, y: 0 });
   let sea = useRef();
+
   const mouseDownHandler = function (e) {
+    if (props.DragToScroll === false) return;
+    sea.current.style.userSelect = "none";
     pos.current = {
       // The current scroll
       left: window.pageXOffset,
@@ -18,6 +21,7 @@ function Sea(props) {
     sea.current.addEventListener("mouseup", mouseUpHandler);
   };
   const mouseMoveHandler = function (e) {
+    if (props.DragToScroll === false) return;
     // How far the mouse has been moved
     const dx = e.clientX - pos.current.x;
     const dy = e.clientY - pos.current.y;
@@ -30,19 +34,19 @@ function Sea(props) {
     });
   };
   const mouseUpHandler = function () {
+    if (props.DragToScroll === false) return;
     sea.current.removeEventListener("mousemove", mouseMoveHandler);
     sea.current.removeEventListener("mouseup", mouseUpHandler);
-    // sea.current.style.removeProperty("user-select");
+    sea.current.style.removeProperty("user-select");
   };
   useEffect(() => {
     sea.current = document.querySelector(".section-sea");
-    sea.current.addEventListener("mousedown", mouseDownHandler);
-  });
+    if(props.DragToScroll===true)sea.current.style.cursor = 'grab';
+    else sea.current.style.cursor = 'default';
+  }, [props.DragToScroll]);
 
   return (
-    <section
-      className="section-sea"
-    >
+    <section className="section-sea" onMouseDown={mouseDownHandler}>
       <Pirate CurrentBox={props.CurrentBox} />
     </section>
   );
