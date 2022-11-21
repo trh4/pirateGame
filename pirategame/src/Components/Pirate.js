@@ -3,11 +3,9 @@ import React, { useEffect, useRef } from "react";
 function Pirate(props) {
   let pirate = useRef();
   useEffect(() => {
-    console.log("pirate render");
     pirate.current = document.querySelector(".pirate");
-    // code to run after render goes here
     movePirate();
-  },[props.CurrentBox]);
+  }, [props.CurrentBox]);
   function followPirate(sec, blockVal, inlineVal) {
     let centerPirate = setInterval(() => {
       pirate.current.scrollIntoView({
@@ -18,7 +16,7 @@ function Pirate(props) {
     }, 0);
     setTimeout(() => {
       clearInterval(centerPirate);
-      console.log('cleard')
+      console.log("cleard");
     }, sec * 1000);
   }
   async function movePirate() {

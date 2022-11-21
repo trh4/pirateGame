@@ -1,5 +1,5 @@
 // npm run watch:sass
-import React, { useEffect, useState,useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import Sea from "./Sea";
 import Sidebar from "./Sidebar";
 
@@ -7,9 +7,7 @@ function App() {
   let [dragToScroll, setDragToScroll] = useState(false);
   let [currentBox, setcurrentBox] = useState(0);
   useEffect(() => {
-    // code to run after render goes here
     // centerMap();
-    console.log(dragToScroll)
   },[dragToScroll] );
 
   let centerMap = () => {
@@ -51,6 +49,7 @@ function App() {
     //   behavior: "smooth",
     // });
   }
+  
   return (
     <div
       className="app"
@@ -60,8 +59,10 @@ function App() {
       <Sidebar
         SetcurrentBox={setcurrentBox}
         SetDragToScroll={setDragToScroll}
+        DragToScroll={dragToScroll}
       />
     <Sea CurrentBox={currentBox} DragToScroll={dragToScroll} />
+    
     </div>
   );
 }

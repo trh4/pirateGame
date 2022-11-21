@@ -182,12 +182,30 @@ body {
 
 .sidebar {
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.75);
   top: 0;
   right: 0;
   width: 22vw;
   height: 100vh;
-  z-index: 1; }
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  justify-items: center;
+  align-items: center; }
+  .sidebar__hand--img {
+    background-color: white;
+    background-image: url("../../src/img/HandPic.png");
+    width: 70%;
+    padding-bottom: 70%;
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    background-size: cover;
+    z-index: 1;
+    backface-visibility: hidden;
+    background-size: 0 0; }
 
 .pirate {
   height: auto;
