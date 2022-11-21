@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     // code to run after render goes here
     centerMap();
-    document.addEventListener("mousemove", logKey);
+    
   }, []);
   useEffect(() => {
     // code to run after render goes here
@@ -28,18 +28,26 @@ function App() {
       console.log("User pressed: ", e.key, "centering map");
       setcurrentBox(6);
     }
+    if (e.key === "q" || e.key === "Q") {
+      document.addEventListener('mousemove', logKey)
+    }
   }
 
   function logKey(e) {
     console.log(`
       Screen X/Y: ${e.screenX}, ${e.screenY}
+      Window scr: ${window.screen.width}, ${window.screen.height}
+      Window inn: ${window.innerWidth}, ${window.innerHeight}
       Client X/Y: ${e.clientX}, ${e.clientY}
-      Client X/Y: ${e.clientWidth}, ${e.clientHeight}
       page X/Y:   ${e.pageX}, ${e.pageY}
       offset X/Y: ${e.offsetX}, ${e.offsetY}
+      offset X/Y: ${window.pageXOffset}, ${window.pageYOffset}
       `);
-    console.log(VisualViewport.window);
-    window.scrollTo({ top: e.clientY, left: e.clientX, behavior: "smooth" });
+    // window.scrollTo({
+    //   top: window.innerHeight * 1 - e.clientY,
+    //   left: window.innerWidth * 1 - e.clientX,
+    //   behavior: "smooth",
+    // });
   }
   return (
     <div

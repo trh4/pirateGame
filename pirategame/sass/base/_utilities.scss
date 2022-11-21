@@ -49,5 +49,9 @@
   transition: transform 1.5s ease-in-out;
 }
 
-
-
+.grab  {
+  cursor: grab !important ;  /* or whatever cursor */
+}
+.grabbing  {
+  cursor: grabbing !important;  /* or whatever cursor */
+}

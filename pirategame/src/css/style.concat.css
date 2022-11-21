@@ -25,29 +25,23 @@ order: base + typography > general layout + grid > page leyout >components
   box-sizing: inherit; }
 
 html {
-  /* font-size: 10px; */
-  font-size: 62.5%;
-  /* 0.625*16=10px  16 is the browser def font-size */ }
-  @media only screen and (max-width: 75em) {
-    html {
-      font-size: 56.25%; } }
-  @media only screen and (max-width: 56.25em) {
-    html {
-      font-size: 50%; } }
-  @media only screen and (min-width: 112.5em) {
-    html {
-      font-size: 75%; } }
-
-body {
-  box-sizing: border-box;
-  padding: 3rem; }
-  @media only screen and (max-width: 56.25em) {
-    body {
-      padding: 0; } }
+  font-size: 62.5%; }
 
 ::selection {
   background-color: #55c57a;
   color: #ffffff; }
+
+html,
+body,
+#root,
+.section-sea,
+.app {
+  aspect-ratio: auto 16 / 9; }
+
+html {
+  height: 200vh;
+  width: 200vw;
+  aspect-ratio: auto 16 / 9; }
 
 body {
   font-family: "Lato", sans-serif;
@@ -151,90 +145,56 @@ body {
 .u-margin-top-huge {
   margin-top: 10rem !important; }
 
-.header {
-  height: 95vh;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8));
-  background-size: cover;
-  background-position: top;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  position: relative; }
-  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), only screen and (min-width: 125em), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em) {
-    .header {
-      background-image: linear-gradient to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8); } }
-  @media only screen and (max-width: 37.5em) {
-    .header {
-      -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
-      clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%); } }
-  .header__logo-box {
-    position: absolute;
-    /* top: 40px; */
-    top: 4rem;
-    /* left: 40px; */
-    left: 4rem; }
-  .header__logo {
-    /* height: 35px; */
-    height: 3.5rem; }
-  .header__text-box {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    /* the top and left are in realiton to the perent elemt  */
-    transform: translate(-50%, -50%);
-    /* move in realitaion to the elemnt itself */
-    /* make it possible that the elmnt is exactly in the center */
-    text-align: center;
-    /* center the text the inside the box - the btn */ }
+.move-to-2 {
+  transform: translate(380%, -20%);
+  transition: transform 1.5s ease-in-out, opacity 2s ease-in-out; }
 
-.footer {
-  background-color: #333;
-  padding: 10rem 0;
-  font-size: 1.4rem;
-  color: #ebebeb; }
-  @media only screen and (max-width: 56.25em) {
-    .footer {
-      padding: 8rem 0; } }
-  .footer__logo-box {
-    text-align: center;
-    margin-bottom: 8rem; }
-    @media only screen and (max-width: 56.25em) {
-      .footer__logo-box {
-        margin-bottom: 6rem; } }
-  .footer__logo {
-    width: 15rem;
-    height: auto; }
-  .footer__navigation {
-    border-top: 1px solid #777;
-    padding-top: 2rem;
-    display: inline-block; }
-    @media only screen and (max-width: 56.25em) {
-      .footer__navigation {
-        width: 100%;
-        text-align: center; } }
-  .footer__list {
-    list-style: none; }
-  .footer__item {
-    display: inline-block; }
-    .footer__item:not(:last-child) {
-      margin: 1.5rem; }
-  .footer__link:link, .footer__link:visited {
-    color: #ebebeb;
-    background-color: #333;
-    text-decoration: none;
-    text-transform: uppercase;
-    display: inline-block;
-    transition: all 0.2s; }
-  .footer__link:hover, .footer__link:active {
-    color: #55c57a;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
-    transform: rotate(5deg) scale(1.3); }
-  .footer__copyright {
-    border-top: 1px solid #bcbcbc;
-    padding-top: 2rem;
-    width: 80%;
-    float: right;
-    color: #ebebeb; }
-    @media only screen and (max-width: 56.25em) {
-      .footer__copyright {
-        width: 100%;
-        float: none; } }
+.move-to-3 {
+  transform: translate(880%, 70%);
+  transition: transform 1.5s ease-in-out; }
+
+.move-to-4 {
+  transform: translate(450%, 150%);
+  transition: transform 1.5s ease-in-out; }
+
+.move-to-5 {
+  transform: translate(30%, 265%);
+  transition: transform 1.5s ease-in-out; }
+
+.move-to-6 {
+  transform: translate(965%, 250%);
+  transition: transform 1.5s ease-in-out; }
+
+.grab {
+  cursor: grab;
+  /* or whatever cursor */ }
+
+.grabbing {
+  cursor: grabbing;
+  /* or whatever cursor */ }
+
+.section-sea {
+  position: relative;
+  background-image: url(../img/seaWithIslands-upcrop.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top left; }
+
+.sidebar {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.4);
+  top: 0;
+  right: 0;
+  width: 22vw;
+  height: 100vh;
+  z-index: 1; }
+
+.pirate {
+  height: auto;
+  width: 5.272356539%;
+  position: absolute;
+  left: calc(292/3433*100%);
+  top: calc(75/2051*100%); }
+
+.app {
+  position: relative; }

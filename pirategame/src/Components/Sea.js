@@ -1,26 +1,15 @@
 import Pirate from "./Pirate";
 import { useRef, useEffect } from "react";
 
-
-
 // npm run watch:sass
 function Sea(props) {
   let pos = useRef({ top: 0, left: 0, x: 0, y: 0 });
-  let sea = useRef(document.querySelector(".section-sea"));
-  useEffect(() => {
-    const clickEvent = new Event("touchmove", { bubbles: true });
-    window.dispatchEvent(clickEvent);
-    // code to run after render goes here
-    sea.current = document.querySelector(".section-sea");
-    // document.addEventListener("mousedown", mouseDownHandler);
-  });
+  let sea = useRef();
   const mouseDownHandler = function (e) {
-    sea.current.style.cursor = "grabbing";
-    sea.current.style.userSelect = "none";
     pos.current = {
       // The current scroll
-      left: sea.current.scrollLeft,
-      top: sea.current.scrollTop,
+      left: window.pageXOffset,
+      top: window.pageYOffset,
       // Get the current mouse position
       x: e.clientX,
       y: e.clientY,
@@ -34,18 +23,26 @@ function Sea(props) {
     const dy = e.clientY - pos.current.y;
 
     // Scroll the element
-    sea.current.scrollTop = pos.current.top - dy;
-    sea.current.scrollLeft = pos.current.left - dx;
+    window.scrollTo({
+      top: pos.current.top - dy,
+      left: pos.current.left - dx,
+      behavior: "smooth",
+    });
   };
   const mouseUpHandler = function () {
-    document.removeEventListener("mousemove", mouseMoveHandler);
-    document.removeEventListener("mouseup", mouseUpHandler);
-
-    sea.current.style.cursor = "grab";
-    sea.current.style.removeProperty("user-select");
+    sea.current.removeEventListener("mousemove", mouseMoveHandler);
+    sea.current.removeEventListener("mouseup", mouseUpHandler);
+    // sea.current.style.removeProperty("user-select");
   };
+  useEffect(() => {
+    sea.current = document.querySelector(".section-sea");
+    sea.current.addEventListener("mousedown", mouseDownHandler);
+  });
+
   return (
-    <section className="section-sea">
+    <section
+      className="section-sea"
+    >
       <Pirate CurrentBox={props.CurrentBox} />
     </section>
   );
