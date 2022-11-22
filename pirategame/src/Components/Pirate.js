@@ -26,13 +26,13 @@ function Pirate(props) {
       pirate.current.classList.add("move-to-2");
     }
     setTimeout(() => {
-      if (props.CurrentBox >= 3) {
+      if (props.CurrentBox >= 3 && props.CurrentBox!==7) {
         pirate.current.classList.add("move-to-3");
-        if (props.CurrentBox >= 4) {
+        if (props.CurrentBox >= 4 ) {
           setTimeout(() => {
             followPirate(1.5, "center", "end");
             pirate.current.classList.add("move-to-4");
-            if (props.CurrentBox >= 5) {
+            if (props.CurrentBox >= 5 ) {
               setTimeout(() => {
                 followPirate(1.5, "center", "end");
                 pirate.current.classList.add("move-to-5");

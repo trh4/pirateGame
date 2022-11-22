@@ -94,7 +94,7 @@ export default function Popup(props) {
       setTimeout(() => {
         if (document.querySelector(".popup"))
           document.querySelector(".popup").classList.add("popup--show");
-      }, props.CurrentBox===7 ? 5*1500+500 : props.CurrentBox*1500+500);
+      }, props.CurrentBox===7 ? 1500 : props.CurrentBox*1500-1500);
     }
   }, [props.CurrentBox]);
   function modal() {
@@ -114,7 +114,7 @@ export default function Popup(props) {
       case 6:
         return gotNumber("You reached the island and survived!", true);
       case 7:
-        return gotNumber("You found spoiled rum", false, 5);
+        return gotNumber("You found spoiled rum", false);
       default:
         break;
     }

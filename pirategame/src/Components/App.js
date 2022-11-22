@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Sea from "./Sea";
 import Sidebar from "./Sidebar";
 import Popup from "./Popup";
+import { render } from "@testing-library/react";
 
 function App() {
   let [dragToScroll, setDragToScroll] = useState(false);
@@ -51,6 +52,7 @@ function App() {
     //   behavior: "smooth",
     // });
   }
+
   useEffect(() => {
     console.log("render:", name, email);
     if (currentBox === 0) centerMap();

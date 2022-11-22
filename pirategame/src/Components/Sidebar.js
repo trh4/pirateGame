@@ -8,8 +8,7 @@ function Sidebar(props) {
   }
   function rollDice() {
     if (props.DragToScroll === true) return;
-    const rand = Math.floor(Math.random() * 7);
-    // changeCube(rand);
+    const rand = Math.floor(Math.random() * 8);
     changeCube(rand);
     setTimeout(() => {
       props.SetcurrentBox(rand);
@@ -22,6 +21,7 @@ function Sidebar(props) {
         cubeRotate.classList.add("show-front");
         break;
       case 2:
+      case 7:
         cubeRotate.classList.add("show-right");
         break;
       case 3:
@@ -43,7 +43,7 @@ function Sidebar(props) {
 
   useEffect(() => {
     if (props.CurrentBox === 0) {
-      document.querySelector(".cube--rotate").className="cube cube--rotate"
+      document.querySelector(".cube--rotate").className = "cube cube--rotate";
     }
     toggleBackground();
   }, [props.DragToScroll, props.CurrentBox]);
@@ -58,7 +58,7 @@ function Sidebar(props) {
             : props.SetDragToScroll(false);
         }}
       ></figure>
-      <button className="sidebar__rollDice" onMouseUp={rollDice}>
+      <button className="sidebar__rollDice" onClick={rollDice}>
         Roll Dice
       </button>
       <div className="cube__scene">
