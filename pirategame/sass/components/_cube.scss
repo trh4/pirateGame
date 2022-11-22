@@ -1,0 +1,102 @@
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: translateZ(-($cube-base/2));
+  transition: transform 1s;
+}
+
+.cube__scene {
+  width: $cube-base;
+  height: $cube-base;
+  perspective: $cube-base * 3;
+}
+.cube__face {
+  background-color: $cube-background-color;
+  position: absolute;
+  width: $cube-base;
+  height: $cube-base;
+  line-height: $cube-base;
+  font-size: 15vh;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  border: 1vh solid black;
+  &::before {
+    position: absolute;
+    content: "";
+    width: $cube-base * 0.2;
+    height: $cube-base * 0.2;
+    background: black;
+    border-radius: 50%;
+    @include Center-horz-vert;
+  }
+}
+
+.cube__face--front {
+  // number 1
+  transform: rotateY(0deg) translateZ(($cube-base/2));
+}
+.cube__face--right {
+  // number 2
+  transform: rotateY(90deg) translateZ(($cube-base/2));
+  &:before {
+    background: transparent;
+    box-shadow: #000 -3vw -3vw 0px 0px, #000 3vw 3vw 0px 0px;
+  }
+}
+.cube__face--back {
+  // number 3
+  transform: rotateY(180deg) translateZ(($cube-base/2));
+  &:before {
+    box-shadow: #000 -3vw 3vw 0px 0px, #000 3vw -3vw 0px 0px;
+  }
+}
+.cube__face--left {
+  // number 4
+  transform: rotateY(-90deg) translateZ(($cube-base/2));
+  &:before {
+    background: transparent;
+    box-shadow: #000 -3vw 3vw 0px 0px, #000 -3vw -3vw 0px 0px,
+      #000 3vw 3vw 0px 0px, #000 3vw -3vw 0px 0px;
+  }
+}
+.cube__face--top {
+  // number 5
+  transform: rotateX(90deg) translateZ(($cube-base/2));
+  &:before {
+    box-shadow: #000 -3vw -3vw 0px 0px, #000 -3vw 3vw 0px 0px,
+      #000 3vw -3vw 0px 0px, #000 3vw 3vw 0px 0px;
+  }
+}
+.cube__face--bottom {
+  // number 6
+  transform: rotateX(-90deg) translateZ(($cube-base/2));
+  &:before {
+    background: transparent;
+    box-shadow: #000 -3vw -3vw 0px 0px, #000 -3vw 0px 0px 0px,
+      #000 -3vw 3vw 0px 0px, #000 3vw -3vw 0px 0px, #000 3vw 0px 0px 0px,
+      #000 3vw 3vw 0px 0px;
+  }
+}
+
+.cube.show-front {
+  transform: translateZ(-($cube-base/2)) rotateY(0deg);
+}
+.cube.show-right {
+  transform: translateZ(-($cube-base/2)) rotateY(-90deg);
+}
+.cube.show-back {
+  transform: translateZ(-($cube-base/2)) rotateY(-180deg);
+}
+.cube.show-left {
+  transform: translateZ(-($cube-base/2)) rotateY(90deg);
+}
+.cube.show-top {
+  transform: translateZ(-($cube-base/2)) rotateX(-90deg);
+}
+.cube.show-bottom {
+  transform: translateZ(-($cube-base/2)) rotateX(90deg);
+}

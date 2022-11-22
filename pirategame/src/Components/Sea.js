@@ -8,6 +8,7 @@ function Sea(props) {
 
   const mouseDownHandler = function (e) {
     if (props.DragToScroll === false) return;
+    document.querySelector('.sidebar').style.zIndex=-1;
     sea.current.style.userSelect = "none";
     pos.current = {
       // The current scroll
@@ -35,6 +36,7 @@ function Sea(props) {
   };
   const mouseUpHandler = function () {
     if (props.DragToScroll === false) return;
+    document.querySelector('.sidebar').style.zIndex=1;
     sea.current.removeEventListener("mousemove", mouseMoveHandler);
     sea.current.removeEventListener("mouseup", mouseUpHandler);
     sea.current.style.removeProperty("user-select");

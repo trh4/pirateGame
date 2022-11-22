@@ -5,6 +5,8 @@
   right: 0;
   width: 22vw;
   height: 100vh;
+
+  
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -12,7 +14,7 @@
   justify-items: center;
   align-items: center;
 
-  &__hand--img {
+  &__hand {
     background-color: white;
     background-image: url("../../src/img/HandPic.png");
     width: 70%;
@@ -21,9 +23,31 @@
     shape-outside: circle(50% at 50% 50%);
     -webkit-clip-path: circle(50% at 50% 50%);
     clip-path: circle(50% at 50% 50%);
-    background-size: cover;
+    // background-size: cover;
     z-index: 1;
-    backface-visibility: hidden;
-    background-size: 0 0;
+    // backface-visibility: hidden;
+    cursor: pointer;
+  }
+  &__rollDice {
+    width: 15vw;
+    height: 10vh;
+    border-radius: 1vh;
+    border: none;
+    background-color: rgba($color: rgb(219, 77, 0), $alpha: 0.95);
+    color: whitesmoke;
+    font-size: 2.5vw;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 1.5rem 2rem rgba($color-black, 0.2);
+    }
+
+    &:active {
+      outline: none;
+      transform: translateY(-1px);
+      box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+    }
   }
 }
