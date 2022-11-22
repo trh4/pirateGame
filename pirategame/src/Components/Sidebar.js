@@ -7,13 +7,13 @@ function Sidebar(props) {
     else hand.style.backgroundSize = "cover";
   }
   function rollDice() {
-    if(props.DragToScroll===true) return;
+    if (props.DragToScroll === true) return;
     const rand = Math.floor(Math.random() * 7);
     // changeCube(rand);
     changeCube(rand);
     setTimeout(() => {
       props.SetcurrentBox(rand);
-    }, 2 * 1000);
+    }, 1 * 1000);
   }
   function changeCube(num) {
     let cubeRotate = document.querySelector(".cube--rotate");
@@ -42,6 +42,9 @@ function Sidebar(props) {
   }
 
   useEffect(() => {
+    if (props.CurrentBox === 0) {
+      document.querySelector(".cube--rotate").className="cube cube--rotate"
+    }
     toggleBackground();
   }, [props.DragToScroll, props.CurrentBox]);
   return (

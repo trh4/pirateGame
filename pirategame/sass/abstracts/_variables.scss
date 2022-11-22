@@ -1,13 +1,14 @@
 //colors
-$color-primary: #55c57a;
-$color-primary-light: #7ed56f;
-$color-primary-dark: #28b485;
+$color-primary: rgba(hsl(209, 100%, 50%),1);
+$color-primary-light:hsl(209, 100%, 58%);
+$color-primary-dark: #5643fa;
+
 
 $color-secondery-light:#ffb900;
 $color-secondery-dark:#ff7730;
 
-$color-tertiary-light:#2998ff;
-$color-tertiary-dark:#5643fa;
+$color-tertiary-light: #7ed56f;
+$color-tertiary-dark:#28b485;
 
 
 $color-grey-light-1: hsl(0, 0%, 92%);
@@ -20,7 +21,9 @@ $color-grey-dark-3: #333;
 $color-white: #ffffff;
 $color-black: #000000;
 //font
-$default-font-size:1.6rem;
+$default-font-size:1vw;
+$remEq:1vw*0.7;
+
 
 //grid
 $grid-width:114rem;
@@ -29,6 +32,6 @@ $gutter-vertical-small:6rem;
 $gutter-horizontal:6rem;
 
 $cube-base:12vw;
-$cube-background-color:rgba(rgb(255, 49, 49),1);
+$cube-background-color:rgba(hsl(0, 100%, 65%),1);
 
 

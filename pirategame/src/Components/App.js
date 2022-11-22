@@ -2,10 +2,13 @@
 import React, { useEffect, useState } from "react";
 import Sea from "./Sea";
 import Sidebar from "./Sidebar";
+import Popup from "./Popup";
 
 function App() {
   let [dragToScroll, setDragToScroll] = useState(false);
-  let [currentBox, setcurrentBox] = useState(0);
+  let [currentBox, setcurrentBox] = useState(-1);
+  let [email, setEmail] = useState();
+  let [name, setName] = useState();
   let centerMap = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
@@ -28,6 +31,9 @@ function App() {
     if (e.key === "X" || e.key === "x") {
       setDragToScroll(false);
     }
+    if (e.key === "p" || e.key === "P") {
+      document.querySelector(".popup").classList.add("popup--show");
+    }
   }
   function logKey(e) {
     console.log(`
@@ -45,9 +51,12 @@ function App() {
     //   behavior: "smooth",
     // });
   }
-  function name(params) {}
+  useEffect(() => {
+    console.log("render:", name, email);
+    if (currentBox === 0) centerMap();
+  });
   return (
-    <div className="app" tabIndex={-1} onKeyDown={handleKeyDown}>
+    <main className="app" tabIndex={-1} onKeyDown={handleKeyDown}>
       <Sidebar
         SetcurrentBox={setcurrentBox}
         CurrentBox={currentBox}
@@ -55,42 +64,13 @@ function App() {
         DragToScroll={dragToScroll}
       />
       <Sea CurrentBox={currentBox} DragToScroll={dragToScroll} />
-      
-      <aside class="popup" id="popup">
-        <div class="popup__content">
-          <div class="popup__right">
-            <a href="." class="popup__close">
-              &times;
-            </a>
-            <h2 class="heading-secondery u-margin-bottom-small">
-              Start booking now
-            </h2>
-            <h3 class="heading-tertiary u-margin-bottom-small">
-              Important &ndash; Please read these terms before booking
-            </h3>
-            <p class="popup__text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
-              sed risus pretium quam. Aliquam sem et tortor consequat id.
-              Volutpat odio facilisis mauris sit amet massa vitae. Mi bibendum
-              neque egestas congue. Placerat orci nulla pellentesque dignissim
-              enim sit. Vitae semper quis lectus nulla at volutpat diam ut
-              venenatis. Malesuada pellentesque elit eget gravida cum sociis
-              natoque penatibus et. Proin fermentum leo vel orci porta non
-              pulvinar neque laoreet. Gravida neque convallis a cras semper.
-              Molestie at elementum eu facilisis sed odio morbi quis. Faucibus
-              vitae aliquet nec ullamcorper sit amet risus nullam eget. Nam
-              libero justo laoreet sit. Amet massa vitae tortor condimentum
-              lacinia quis vel eros donec. Sit amet facilisis magna etiam.
-              Imperdiet sed euismod nisi porta.
-            </p>
-            <a href="#popup" class="btn btn--green">
-              Book now
-            </a>
-          </div>
-        </div>
-      </aside>
-    </div>
+      <Popup
+        CurrentBox={currentBox}
+        SetcurrentBox={setcurrentBox}
+        SetEmail={setEmail}
+        SetName={setName}
+      />
+    </main>
   );
 }
 

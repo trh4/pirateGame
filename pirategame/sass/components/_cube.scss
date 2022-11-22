@@ -21,9 +21,10 @@
   line-height: $cube-base;
   font-size: 15vh;
   font-weight: bold;
-  color: white;
+  // color: white;
   text-align: center;
   border: 1vh solid black;
+  border-radius: 7%;
   &::before {
     position: absolute;
     content: "";
@@ -34,6 +35,7 @@
     @include Center-horz-vert;
   }
 }
+
 
 .cube__face--front {
   // number 1

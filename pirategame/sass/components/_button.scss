@@ -1,0 +1,74 @@
+.btn {
+  &,
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: $default-font-size*1.5 $default-font-size*4 ;
+    // padding: 10px 100px ;
+    display: inline-block;
+    /* border-radius: 100px; */
+    border-radius: 10rem;
+    transition: all 0.2s;
+    /* transition has to be on the perent */
+    position: relative;
+    font-size: $default-font-size;
+    //change for the <Button> elm
+    border: none;
+    cursor: pointer;
+  }
+
+
+  &:hover {
+    transform: translateY(-3px);
+    /* box-shadow: 0 10px 20px #00000033; */
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+    /* box shadow - try online generator to study */
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  &--blue {
+    background-color: $color-primary;
+    color: $color-white;
+    &::after {
+      background-color: $color-primary;
+    }
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.2s;
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards;
+    /* set the 0% animation setting for the delay too  */
+  }
+}

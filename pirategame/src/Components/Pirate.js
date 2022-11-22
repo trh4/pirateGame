@@ -4,6 +4,7 @@ function Pirate(props) {
   let pirate = useRef();
   useEffect(() => {
     pirate.current = document.querySelector(".pirate");
+    if(props.CurrentBox===0) pirate.current.className="pirate"
     movePirate();
   }, [props.CurrentBox]);
   function followPirate(sec, blockVal, inlineVal) {

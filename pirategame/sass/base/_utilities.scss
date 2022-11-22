@@ -3,20 +3,13 @@
 }
 
 .u-margin-bottom-small {
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 2vh !important;
 }
 .u-margin-bottom-medium {
-  margin-bottom: 4rem !important;
-  @include respond(tab-port) {
-    margin-bottom: 3rem !important;
-  }
+  margin-bottom: 4vh !important;
 }
 .u-margin-bottom-big {
   margin-bottom: 8rem !important;
-
-  @include respond(tab-port) {
-    margin-bottom: 5rem !important;
-  }
 }
 
 .u-margin-top-big {
@@ -55,6 +48,3 @@
 .grabbing {
   cursor: grabbing !important; /* or whatever cursor */
 }
-
-
-
