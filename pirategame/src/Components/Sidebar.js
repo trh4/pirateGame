@@ -7,7 +7,7 @@ function Sidebar(props) {
     else hand.style.backgroundSize = "cover";
   }
   function rollDice() {
-    // document.querySelector('.sidebar__rollDice').disabled=true;
+    document.querySelector('.sidebar__rollDice').disabled=true;
     if (props.DragToScroll === true) return;
     // console.log('fetching',`https://pirategame-backend.herokuapp.com/dice?email=${props.Email}&name=${props.Name}`)
     fetch(`https://pirategame-backend.herokuapp.com/dice?email=${props.Email}&name=${props.Name}` )
