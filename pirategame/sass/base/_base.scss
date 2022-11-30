@@ -22,10 +22,44 @@ body,
   // @include fullScreen();
   aspect-ratio: auto 16 / 9;
 }
-html{
-  // height: 200%;
-  // width: 200%;
+html {
   height: 200vh;
   width: 200vw;
   aspect-ratio: auto 16 / 9;
+}
+
+// @media only screen and (min-width: 1920px) {
+//   html{
+//     height: 5000vh;
+
+//   }
+// } //600px
+
+@media only screen and (max-width: 1920px) and (orientation: portrait) {
+  #root {
+    display: none;
+  }
+}
+@media only screen and (orientation: landscape) {
+  #landscapeErr {
+    display: none;
+  }
+}
+// max-width: 1920px use in all that <= 1920
+@media only screen and (max-width: 600px) {
+  html {
+    // height: 5000vh;
+  }
+}
+
+@media (pointer: coarse) {
+  html {
+    height: 100vh;
+    width: 100vw;
+  }
+  body{
+    height: 200vh;
+    width: 200vw;
+  }
+
 }

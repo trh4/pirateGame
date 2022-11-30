@@ -14,7 +14,6 @@ function App() {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
   function handleKeyDown(e) {
-    // console.log('User pressed: ', e.key);
     if (e.key === "c" || e.key === "C") {
       console.log("User pressed: ", e.key, "centering map");
       centerMap();

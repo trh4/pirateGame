@@ -19,29 +19,6 @@
   margin-top: 10rem !important;
 }
 
-.move-to-2 {
-  //animation: name duration timing-function delay iteration-count direction fill-mode;
-  transform: translate(380%, -20%);
-  transition: transform 1.5s ease-in-out, opacity 2s ease-in-out;
-}
-
-.move-to-3 {
-  transform: translate(880%, 70%);
-  transition: transform 1.5s ease-in-out;
-}
-.move-to-4 {
-  transform: translate(450%, 150%);
-  transition: transform 1.5s ease-in-out;
-}
-.move-to-5 {
-  transform: translate(30%, 265%);
-  transition: transform 1.5s ease-in-out;
-}
-.move-to-6 {
-  transform: translate(965%, 250%);
-  transition: transform 1.5s ease-in-out;
-}
-
 .grab {
   cursor: grab !important ; /* or whatever cursor */
 }

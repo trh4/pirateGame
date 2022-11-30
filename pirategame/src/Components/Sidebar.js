@@ -13,9 +13,9 @@ function Sidebar(props) {
     fetch(`https://pirategame-backend.herokuapp.com/dice?email=${props.Email}&name=${props.Name}` )
       .then((response) => response.json())
       .then((data) => {
-        changeCube(5);
+        changeCube(data.newdice);
         setTimeout(() => {
-          props.SetcurrentBox(5);
+          props.SetcurrentBox(data.newdice);
         }, 1 * 1000);
       });
   }

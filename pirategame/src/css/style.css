@@ -43,6 +43,22 @@ html {
   width: 200vw;
   aspect-ratio: auto 16 / 9; }
 
+@media only screen and (max-width: 1920px) and (orientation: portrait) {
+  #root {
+    display: none; } }
+
+@media only screen and (orientation: landscape) {
+  #landscapeErr {
+    display: none; } }
+
+@media (pointer: coarse) {
+  html {
+    height: 100vh;
+    width: 100vw; }
+  body {
+    height: 200vh;
+    width: 200vw; } }
+
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
@@ -97,6 +113,14 @@ body {
 .u-margin-top-huge {
   margin-top: 10rem !important; }
 
+.grab {
+  cursor: grab !important;
+  /* or whatever cursor */ }
+
+.grabbing {
+  cursor: grabbing !important;
+  /* or whatever cursor */ }
+
 .move-to-2 {
   transform: translate(380%, -20%);
   transition: transform 1.5s ease-in-out, opacity 2s ease-in-out; }
@@ -116,14 +140,6 @@ body {
 .move-to-6 {
   transform: translate(965%, 250%);
   transition: transform 1.5s ease-in-out; }
-
-.grab {
-  cursor: grab !important;
-  /* or whatever cursor */ }
-
-.grabbing {
-  cursor: grabbing !important;
-  /* or whatever cursor */ }
 
 .cube {
   width: 100%;
@@ -436,6 +452,11 @@ body {
   justify-content: space-around;
   justify-items: center;
   align-items: center; }
+  @media (pointer: coarse) {
+    .sidebar {
+      -webkit-backface-visibility: hidden;
+      position: fixed;
+      left: 78vw; } }
   .sidebar__hand {
     background-color: white;
     background-image: url("../../src/img/HandPic.png");

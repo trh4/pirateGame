@@ -5,8 +5,12 @@
   right: 0;
   width: 22vw;
   height: 100vh;
+  @media (pointer: coarse) {
+    -webkit-backface-visibility: hidden;
+    position: fixed;
+    left: 78vw;
+  }
 
-  
   z-index: 1;
   display: flex;
   flex-direction: column;
