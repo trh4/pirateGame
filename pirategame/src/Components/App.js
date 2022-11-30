@@ -60,9 +60,12 @@ function App() {
       console.log("got new joke!");
       fetch("https://pirategame-backend.herokuapp.com/joke")
         .then((response) => response.json())
-        .then((data) => setJoke(data.newjoke));
+        .then((data) => {
+          console.log("joke is:", data.newjoke);
+          setJoke(data.newjoke);
+        });
     } else setJoke("");
-  });
+  }, [currentBox]);
   return (
     <main className="app" tabIndex={-1} onKeyDown={handleKeyDown}>
       <Sidebar
@@ -79,6 +82,7 @@ function App() {
         SetcurrentBox={setcurrentBox}
         SetEmail={setEmail}
         SetName={setName}
+        Joke={joke}
       />
     </main>
   );

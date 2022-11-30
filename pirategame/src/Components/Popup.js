@@ -100,9 +100,9 @@ export default function Popup(props) {
         props.CurrentBox === 7 ? 1500 : props.CurrentBox * 1500 - 1500
       );
     }
-
   }, [props.CurrentBox]);
   function modal() {
+    console.log("inside sidebar joke is", props.Joke);
     switch (props.CurrentBox) {
       case -1:
         return welcome();
@@ -115,7 +115,7 @@ export default function Popup(props) {
       case 4:
         return gotNumber("You Found the Treasure", true);
       case 5:
-        return gotNumber("props.randJoke", true);
+        return gotNumber(props.Joke, true);
       case 6:
         return gotNumber("You reached the island and survived!", true);
       case 7:
