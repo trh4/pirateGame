@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import Sea from "./Sea";
 import Sidebar from "./Sidebar";
 import Popup from "./Popup";
-import { render } from "@testing-library/react";
 
 function App() {
   let [dragToScroll, setDragToScroll] = useState(false);
   let [currentBox, setcurrentBox] = useState(-1);
   let [email, setEmail] = useState();
   let [name, setName] = useState();
+  let [joke, setJoke] = useState();
   let centerMap = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
@@ -21,7 +21,7 @@ function App() {
     }
     if (e.key === "e" || e.key === "E") {
       console.log("User pressed: ", e.key, "centering map");
-      setcurrentBox(3);
+      setcurrentBox(5);
     }
     if (e.key === "q" || e.key === "Q") {
       document.addEventListener("mousemove", logKey);
@@ -56,6 +56,12 @@ function App() {
   useEffect(() => {
     console.log("render:", name, email);
     if (currentBox === 0) centerMap();
+    if (currentBox === 5) {
+      console.log("got new joke!");
+      fetch("https://pirategame-backend.herokuapp.com/joke")
+        .then((response) => response.json())
+        .then((data) => setJoke(data.newjoke));
+    } else setJoke("");
   });
   return (
     <main className="app" tabIndex={-1} onKeyDown={handleKeyDown}>
@@ -64,6 +70,8 @@ function App() {
         CurrentBox={currentBox}
         SetDragToScroll={setDragToScroll}
         DragToScroll={dragToScroll}
+        Email={email}
+        Name={name}
       />
       <Sea CurrentBox={currentBox} DragToScroll={dragToScroll} />
       <Popup

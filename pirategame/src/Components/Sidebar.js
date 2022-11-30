@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 // npm run watch:sass
 function Sidebar(props) {
   function toggleBackground() {
@@ -7,12 +7,17 @@ function Sidebar(props) {
     else hand.style.backgroundSize = "cover";
   }
   function rollDice() {
+    // document.querySelector('.sidebar__rollDice').disabled=true;
     if (props.DragToScroll === true) return;
-    const rand = Math.floor(Math.random() * 8);
-    changeCube(rand);
-    setTimeout(() => {
-      props.SetcurrentBox(rand);
-    }, 1 * 1000);
+    // console.log('fetching',`https://pirategame-backend.herokuapp.com/dice?email=${props.Email}&name=${props.Name}`)
+    fetch(`https://pirategame-backend.herokuapp.com/dice?email=${props.Email}&name=${props.Name}` )
+      .then((response) => response.json())
+      .then((data) => {
+        changeCube(data.newdice);
+        setTimeout(() => {
+          props.SetcurrentBox(data.newdice);
+        }, 1 * 1000);
+      });
   }
   function changeCube(num) {
     let cubeRotate = document.querySelector(".cube--rotate");

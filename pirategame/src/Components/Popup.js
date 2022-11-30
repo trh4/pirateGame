@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { render } from "@testing-library/react";
 export default function Popup(props) {
   function closeValidate() {
     if (document.querySelector(".form").checkValidity()) {
@@ -91,11 +90,17 @@ export default function Popup(props) {
   }
   useEffect(() => {
     if (props.CurrentBox !== 0) {
-      setTimeout(() => {
-        if (document.querySelector(".popup"))
-          document.querySelector(".popup").classList.add("popup--show");
-      }, props.CurrentBox===7 ? 1500 : props.CurrentBox*1500-1500);
+      setTimeout(
+        () => {
+          if (document.querySelector(".popup")) {
+            document.querySelector(".popup").classList.add("popup--show");
+            document.querySelector(".sidebar__rollDice").disabled = false;
+          }
+        },
+        props.CurrentBox === 7 ? 1500 : props.CurrentBox * 1500 - 1500
+      );
     }
+
   }, [props.CurrentBox]);
   function modal() {
     switch (props.CurrentBox) {
@@ -110,7 +115,7 @@ export default function Popup(props) {
       case 4:
         return gotNumber("You Found the Treasure", true);
       case 5:
-        return gotNumber("random joke from DB", true);
+        return gotNumber("props.randJoke", true);
       case 6:
         return gotNumber("You reached the island and survived!", true);
       case 7:
