@@ -53,7 +53,7 @@ function App() {
   }
 
   useEffect(() => {
-    console.log("render:", name, email);
+    // console.log("render:", name, email);
     if (currentBox === 0) centerMap();
     if (currentBox === 5) {
       console.log("got new joke!");
@@ -63,6 +63,7 @@ function App() {
           console.log("joke is:", data.newjoke);
           setJoke(data.newjoke);
         });
+        window.scrollTo(0,1);
     } else setJoke("");
   }, [currentBox]);
   return (

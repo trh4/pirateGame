@@ -7,10 +7,11 @@ function Sidebar(props) {
     else hand.style.backgroundSize = "cover";
   }
   function rollDice() {
-    document.querySelector('.sidebar__rollDice').disabled=true;
+    document.querySelector(".sidebar__rollDice").disabled = true;
     if (props.DragToScroll === true) return;
-    // console.log('fetching',`https://pirategame-backend.herokuapp.com/dice?email=${props.Email}&name=${props.Name}`)
-    fetch(`https://pirategame-backend.herokuapp.com/dice?email=${props.Email}&name=${props.Name}` )
+    fetch(
+      `https://pirategame-backend.herokuapp.com/dice?email=${props.Email}&name=${props.Name}`
+    )
       .then((response) => response.json())
       .then((data) => {
         changeCube(data.newdice);
@@ -58,9 +59,13 @@ function Sidebar(props) {
         className="sidebar__hand"
         alt="Browse Hand"
         onClick={(e) => {
-          props.DragToScroll === false
-            ? props.SetDragToScroll(true)
-            : props.SetDragToScroll(false);
+          if ((document.body.style.pointer = "coarse"))
+            document.body.requestFullscreen();
+          else {
+            props.DragToScroll === false
+              ? props.SetDragToScroll(true)
+              : props.SetDragToScroll(false);
+          }
         }}
       ></figure>
       <button className="sidebar__rollDice" onClick={rollDice}>
