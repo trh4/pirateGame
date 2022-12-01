@@ -90,6 +90,12 @@ body {
   font-weight: 700;
   text-align: center; }
 
+#landscapeErr {
+  margin: 10rem 0 0 0.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 5rem; }
+
 .u-center-text {
   text-align: center !important; }
 
