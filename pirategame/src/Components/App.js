@@ -1,4 +1,6 @@
 // npm run watch:sass
+// adb reverse tcp:4000 tcp:4000
+// document.body.addEventListener('touchstart', function(e){ e.preventDefault(); });
 import React, { useEffect, useState } from "react";
 import Sea from "./Sea";
 import Sidebar from "./Sidebar";
@@ -14,13 +16,14 @@ function App() {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
   function handleKeyDown(e) {
+    // return;
     if (e.key === "c" || e.key === "C") {
       console.log("User pressed: ", e.key, "centering map");
       centerMap();
     }
     if (e.key === "e" || e.key === "E") {
       console.log("User pressed: ", e.key, "centering map");
-      setcurrentBox(5);
+      setcurrentBox(6);
     }
     if (e.key === "q" || e.key === "Q") {
       document.addEventListener("mousemove", logKey);
@@ -53,17 +56,16 @@ function App() {
   }
 
   useEffect(() => {
-    // console.log("render:", name, email);
     if (currentBox === 0) centerMap();
     if (currentBox === 5) {
-      console.log("got new joke!");
+      // console.log("got new joke!");
       fetch("https://pirategame-backend.herokuapp.com/joke")
         .then((response) => response.json())
         .then((data) => {
           console.log("joke is:", data.newjoke);
           setJoke(data.newjoke);
         });
-        window.scrollTo(0,1);
+        
     } else setJoke("");
   }, [currentBox]);
   return (

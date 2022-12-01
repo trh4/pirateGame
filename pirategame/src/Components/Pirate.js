@@ -4,18 +4,21 @@ function Pirate(props) {
   let pirate = useRef();
   useEffect(() => {
     pirate.current = document.querySelector(".pirate");
-    if(props.CurrentBox===0) pirate.current.className="pirate"
+    if (props.CurrentBox === 0) pirate.current.className = "pirate";
     movePirate();
   }, [props.CurrentBox]);
   function followPirate(sec, blockVal, inlineVal) {
+
+    console.log("start island pirate");
     let centerPirate = setInterval(() => {
       pirate.current.scrollIntoView({
-        behavior: "smooth",
+        
         block: blockVal,
         inline: inlineVal,
       });
     }, 0);
     setTimeout(() => {
+      console.log("end island pirate");
       clearInterval(centerPirate);
       console.log("cleard");
     }, sec * 1000);
@@ -26,13 +29,13 @@ function Pirate(props) {
       pirate.current.classList.add("move-to-2");
     }
     setTimeout(() => {
-      if (props.CurrentBox >= 3 && props.CurrentBox!==7) {
+      if (props.CurrentBox >= 3 && props.CurrentBox !== 7) {
         pirate.current.classList.add("move-to-3");
-        if (props.CurrentBox >= 4 ) {
+        if (props.CurrentBox >= 4) {
           setTimeout(() => {
             followPirate(1.5, "center", "end");
             pirate.current.classList.add("move-to-4");
-            if (props.CurrentBox >= 5 ) {
+            if (props.CurrentBox >= 5) {
               setTimeout(() => {
                 followPirate(1.5, "center", "end");
                 pirate.current.classList.add("move-to-5");

@@ -7,8 +7,8 @@ function Sidebar(props) {
     else hand.style.backgroundSize = "cover";
   }
   function rollDice() {
-    document.querySelector(".sidebar__rollDice").disabled = true;
     if (props.DragToScroll === true) return;
+    document.querySelector(".sidebar__rollDice").disabled = true;
     fetch(
       `https://pirategame-backend.herokuapp.com/dice?email=${props.Email}&name=${props.Name}`
     )
@@ -17,10 +17,11 @@ function Sidebar(props) {
         changeCube(data.newdice);
         setTimeout(() => {
           props.SetcurrentBox(data.newdice);
-        }, 1 * 1000);
+        }, 1000); //takes 1 sec for the cube animation
       });
   }
   function changeCube(num) {
+    //cube animation
     let cubeRotate = document.querySelector(".cube--rotate");
     switch (num) {
       case 1:
@@ -46,11 +47,9 @@ function Sidebar(props) {
         break;
     }
   }
-
   useEffect(() => {
-    if (props.CurrentBox === 0) {
+    if (props.CurrentBox === 0)
       document.querySelector(".cube--rotate").className = "cube cube--rotate";
-    }
     toggleBackground();
   }, [props.DragToScroll, props.CurrentBox]);
   return (
@@ -58,14 +57,10 @@ function Sidebar(props) {
       <figure
         className="sidebar__hand"
         alt="Browse Hand"
-        onClick={(e) => {
-          if ((document.body.style.pointer = "coarse"))
-            document.body.requestFullscreen();
-          else {
-            props.DragToScroll === false
-              ? props.SetDragToScroll(true)
-              : props.SetDragToScroll(false);
-          }
+        onClick={() => {
+          props.DragToScroll === false
+            ? props.SetDragToScroll(true)
+            : props.SetDragToScroll(false);
         }}
       ></figure>
       <button className="sidebar__rollDice" onClick={rollDice}>
