@@ -16,7 +16,7 @@ function App() {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
   function handleKeyDown(e) {
-    // return;
+    return;
     if (e.key === "c" || e.key === "C") {
       console.log("User pressed: ", e.key, "centering map");
       centerMap();
@@ -39,6 +39,7 @@ function App() {
     }
   }
   function logKey(e) {
+    
     console.log(`
       Screen X/Y: ${e.screenX}, ${e.screenY}
       Window scr: ${window.screen.width}, ${window.screen.height}
