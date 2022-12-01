@@ -102,7 +102,6 @@ export default function Popup(props) {
     }
   }, [props.CurrentBox]);
   function modal() {
-    console.log("inside sidebar joke is", props.Joke);
     switch (props.CurrentBox) {
       case -1:
         return welcome();

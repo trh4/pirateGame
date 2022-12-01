@@ -9,7 +9,6 @@ function Pirate(props) {
   }, [props.CurrentBox]);
   function followPirate(sec, blockVal, inlineVal) {
 
-    console.log("start island pirate");
     let centerPirate = setInterval(() => {
       pirate.current.scrollIntoView({
         
@@ -18,9 +17,7 @@ function Pirate(props) {
       });
     }, 0);
     setTimeout(() => {
-      console.log("end island pirate");
       clearInterval(centerPirate);
-      console.log("cleard");
     }, sec * 1000);
   }
   async function movePirate() {

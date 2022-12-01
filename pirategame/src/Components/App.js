@@ -1,7 +1,6 @@
 // npm run watch:sass
-// adb reverse tcp:4000 tcp:4000
-// document.body.addEventListener('touchstart', function(e){ e.preventDefault(); });
-import React, { useEffect, useState } from "react";
+// adb reverse tcp:3000 tcp:3000
+import React, { useEffect, useState, useRef } from "react";
 import Sea from "./Sea";
 import Sidebar from "./Sidebar";
 import Popup from "./Popup";
@@ -12,34 +11,35 @@ function App() {
   let [email, setEmail] = useState();
   let [name, setName] = useState();
   let [joke, setJoke] = useState();
+  const width = useRef(100);
   let centerMap = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
   function handleKeyDown(e) {
-    return;
-    if (e.key === "c" || e.key === "C") {
-      console.log("User pressed: ", e.key, "centering map");
+    if (e.key === "+") {
+      if (width.current >= 200) return;
+      // console.log("User pressed: ",document.body.style.width);
+      width.current = width.current + 10;
+      document.body.style.width = width.current.toString() + "%";
       centerMap();
     }
-    if (e.key === "e" || e.key === "E") {
-      console.log("User pressed: ", e.key, "centering map");
-      setcurrentBox(6);
+    if (e.key === "-") {
+      if (width.current <= 70) return;
+      width.current = width.current - 10;
+      document.body.style.width = width.current.toString() + "%";
+      centerMap();
+    }
+    if (e.key === "0") {
+      width.current = 100;
+      document.body.style.width = 100 + "%";
+      centerMap();
     }
     if (e.key === "q" || e.key === "Q") {
+      return;
       document.addEventListener("mousemove", logKey);
-    }
-    if (e.key === "s" || e.key === "S") {
-      setDragToScroll(true);
-    }
-    if (e.key === "X" || e.key === "x") {
-      setDragToScroll(false);
-    }
-    if (e.key === "p" || e.key === "P") {
-      document.querySelector(".popup").classList.add("popup--show");
     }
   }
   function logKey(e) {
-    
     console.log(`
       Screen X/Y: ${e.screenX}, ${e.screenY}
       Window scr: ${window.screen.width}, ${window.screen.height}
@@ -59,14 +59,11 @@ function App() {
   useEffect(() => {
     if (currentBox === 0) centerMap();
     if (currentBox === 5) {
-      // console.log("got new joke!");
       fetch("https://pirategame-backend.herokuapp.com/joke")
         .then((response) => response.json())
         .then((data) => {
-          console.log("joke is:", data.newjoke);
           setJoke(data.newjoke);
         });
-        
     } else setJoke("");
   }, [currentBox]);
   return (

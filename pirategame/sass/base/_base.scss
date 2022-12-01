@@ -27,6 +27,10 @@ html {
   width: 200vw;
   aspect-ratio: auto 16 / 9;
 }
+body {
+  width: 100%;
+}
+
 #landscapeErr {
   display: none;
 }
